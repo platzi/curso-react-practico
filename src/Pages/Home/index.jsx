@@ -6,7 +6,6 @@ import { ShoppingCartContext } from '../../Context'
 
 function Home() {
   const context = useContext(ShoppingCartContext)
-
   const renderView = () => {
     if (context.filteredItems?.length > 0) {
       return (

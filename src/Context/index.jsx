@@ -2,6 +2,25 @@ import { createContext, useState, useEffect } from 'react'
 
 export const ShoppingCartContext = createContext()
 
+export const UserContext = createContext()
+
+export const UserProvider = ({children})=>{
+  
+  const [user, setUser] = useState(null)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [registeredUsers, setRegisteredUsers] = useState([])
+
+  return (
+    <UserContext.Provider value={{
+      user, setUser,
+      isLoggedIn, setIsLoggedIn,
+      registeredUsers, setRegisteredUsers
+    }}>
+      {children}
+    </UserContext.Provider>
+  )
+}
+
 export const ShoppingCartProvider = ({children}) => {
   // Shopping Cart · Increment quantity
   const [count, setCount] = useState(0)
@@ -102,4 +121,3 @@ export const ShoppingCartProvider = ({children}) => {
     </ShoppingCartContext.Provider>
   )
 }
-
