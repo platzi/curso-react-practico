@@ -22,6 +22,8 @@ function SignIn() {
     } 
     userContext.setUser(verifyUser[0])
     userContext.setIsLoggedIn(true)
+    localStorage.setItem("user", JSON.stringify(verifyUser[0]))
+    localStorage.setItem("isLoggedIn", "true")
   }
   return (
     <Layout>

@@ -6,9 +6,9 @@ export const UserContext = createContext()
 
 export const UserProvider = ({children})=>{
   
-  const [user, setUser] = useState(null)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [registeredUsers, setRegisteredUsers] = useState([])
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")))
+  const [isLoggedIn, setIsLoggedIn] = useState(JSON.parse(localStorage.getItem("isLoggedIn")))
+  const [registeredUsers, setRegisteredUsers] = useState(JSON.parse(localStorage.getItem("registeredUsers")))
 
   return (
     <UserContext.Provider value={{

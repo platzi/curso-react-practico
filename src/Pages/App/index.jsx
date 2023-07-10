@@ -1,5 +1,6 @@
+import { useContext } from 'react'
 import { useRoutes, BrowserRouter } from 'react-router-dom'
-import { ShoppingCartProvider, UserProvider } from '../../Context'
+import { ShoppingCartProvider, UserProvider, UserContext } from '../../Context'
 import Home from '../Home'
 import MyAccount from '../MyAccount'
 import MyOrder from '../MyOrder'
@@ -33,6 +34,16 @@ const AppRoutes = () => {
 }
 
 const App = () => {
+  const userContext = useContext(UserContext)
+  const userLocalStorage = localStorage.getItem("user")
+  const isLoggedInLocalStorage = localStorage.getItem("isLoggedIn")
+  const registeredUsers = localStorage.getItem("registeredUsers")
+  if (!userLocalStorage && !isLoggedInLocalStorage && !registeredUsers){
+    localStorage.setItem("user", "null")
+    localStorage.setItem("isLoggedIn", "false")
+    localStorage.setItem("registeredUsers", "[]")
+  } 
+
   return (
     <ShoppingCartProvider>
       <BrowserRouter>
