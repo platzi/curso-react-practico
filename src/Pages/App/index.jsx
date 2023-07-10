@@ -13,18 +13,20 @@ import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
 import './App.css'
 
 const AppRoutes = () => {
+  const userContext = useContext(UserContext)
+  const isEnabled = userContext.isLoggedIn && userContext.user
   let routes = useRoutes([
-    { path: '/', element: <Home /> },
-    { path: '/clothes', element: <Home /> },
-    { path: '/electronics', element: <Home /> },
-    { path: '/furnitures', element: <Home /> },
-    { path: '/toys', element: <Home /> },
-    { path: '/others', element: <Home /> },
-    { path: '/my-account', element: <MyAccount /> },
-    { path: '/my-order', element: <MyOrder /> },
-    { path: '/my-orders', element: <MyOrders /> },
-    { path: '/my-orders/last', element: <MyOrder /> },
-    { path: '/my-orders/:id', element: <MyOrder /> },
+    { path: '/', element: isEnabled? <Home />:<SignIn/> },
+    { path: '/clothes', element: isEnabled? <Home />:<SignIn/> },
+    { path: '/electronics', element: isEnabled? <Home />:<SignIn/> },
+    { path: '/furnitures', element: isEnabled? <Home />:<SignIn/> },
+    { path: '/toys', element: isEnabled? <Home />:<SignIn/> },
+    { path: '/others', element: isEnabled? <Home />:<SignIn/> },
+    { path: '/my-account', element: isEnabled?<MyAccount />:<SignIn/> },
+    { path: '/my-order', element: isEnabled?<MyOrder />:<SignIn/> },
+    { path: '/my-orders', element: isEnabled?<MyOrders />:<SignIn/> },
+    { path: '/my-orders/last', element: isEnabled?<MyOrder />:<SignIn/> },
+    { path: '/my-orders/:id', element: isEnabled?<MyOrder />:<SignIn/> },
     { path: '/sign-in', element: <SignIn /> },
     { path: '/sign-up', element: <SignUp /> },
     { path: '/*', element: <NotFound /> },
@@ -34,7 +36,6 @@ const AppRoutes = () => {
 }
 
 const App = () => {
-  const userContext = useContext(UserContext)
   const userLocalStorage = localStorage.getItem("user")
   const isLoggedInLocalStorage = localStorage.getItem("isLoggedIn")
   const registeredUsers = localStorage.getItem("registeredUsers")
