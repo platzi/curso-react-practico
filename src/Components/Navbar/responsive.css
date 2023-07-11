@@ -1,0 +1,17 @@
+#left-navbar-responsive, #right-navbar-responsive {
+    display: none;
+    background: white;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+}
+
+
+@media only screen and (max-width: 700px) {
+    #left-navbar, #right-navbar{
+        display: none;
+    }
+    #left-navbar-responsive, #right-navbar-responsive {
+        display: flex;
+        flex-direction: column;
+    }
+  }
