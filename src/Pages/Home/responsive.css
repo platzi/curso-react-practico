@@ -1,0 +1,13 @@
+@media only screen and (max-width: 900px) {
+    #products-container{
+        grid-gap: 4px;
+        grid-template-columns: 1fr; /* Specifies a single column */
+        width: 100%;
+        justify-items: center;
+    }
+    .checkout-side-menu{
+        top: unset !important;
+        bottom: 0;
+        height: 300px !important;
+    }
+}
