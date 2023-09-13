@@ -1,8 +1,15 @@
+import CheckoutSideMenu from "../CheckoutSideMenu"
+import Navbar from "../Navbar"
+
 const Layout = ({ children }) => {
   return (
-    <div className='flex flex-col items-center mt-20'>
-      {children}
-    </div>
+    <>
+      <Navbar />
+      <div className='flex flex-col items-center mt-20'>
+        {children}
+      </div>
+      <CheckoutSideMenu />
+    </>
   )
 }
 
