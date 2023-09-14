@@ -25,6 +25,7 @@ const AppRoutes = () => {
     { path: '/toys', element: <Home /> },
     { path: '/othes', element: <Home /> },
     { path: '/my-account', element: isLoggedUser ? <MyAccount /> : authRoute },
+    { path: '/my-account/edit', element: isLoggedUser ? <SignUp edit={true} /> : authRoute },
     { path: '/my-order', element: <MyOrder /> },
     { path: '/my-orders', element: <MyOrders /> },
     { path: '/my-orders/last', element: <MyOrder /> },

@@ -14,7 +14,7 @@ function MyAccount() {
           <p>Name: <span className='text-base font-normal'>{context.user?.name}</span></p>
           <p>Email: <span className='text-base font-normal'>{context.user?.email}</span></p>
         </div>
-        <Link className='inline-block'>
+        <Link to={"./edit"} className='inline-block'>
           <button className='w-full py-3 border rounded-md border-black'>Edit</button>
         </Link>
       </div>
