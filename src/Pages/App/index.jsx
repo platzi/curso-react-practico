@@ -24,7 +24,7 @@ const AppRoutes = () => {
     { path: '/furnitures', element: <Home /> },
     { path: '/toys', element: <Home /> },
     { path: '/othes', element: <Home /> },
-    { path: '/my-account', element: <MyAccount /> },
+    { path: '/my-account', element: isLoggedUser ? <MyAccount /> : authRoute },
     { path: '/my-order', element: <MyOrder /> },
     { path: '/my-orders', element: <MyOrders /> },
     { path: '/my-orders/last', element: <MyOrder /> },
