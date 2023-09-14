@@ -1,10 +1,34 @@
-import { Form } from 'react-router-dom'
+import { useContext } from 'react';
+import { Form, useNavigate } from 'react-router-dom'
+import { ShoppingCartContext } from '../../Context';
+import { addUser, addSignOutStatus } from '../../utils/localStorage';
 import Layout from '../../Components/Layout'
 
 function SignUp() {
+  const context = useContext(ShoppingCartContext)
+  const navigate = useNavigate();
+
+  const formHandler = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const password = formData.get('password');
+
+    if (name && email && password) {
+      const userAdded = addUser({ name, email, password });
+      addSignOutStatus(false);
+
+      context.setUser(userAdded);
+      context.setSignOutStatus(false);
+
+      navigate('/')
+    }
+  }
+
   return (
     <Layout>
-      <Form className='grid gap-4 w-80'>
+      <Form onSubmit={formHandler} className='grid gap-4 w-80'>
         <h1 className='text-center text-xl font-medium mb-2'>Welcome</h1>
         <div>
           <label className='block mb-1 text-sm font-light'>Your name: </label>
