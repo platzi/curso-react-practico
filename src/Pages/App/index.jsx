@@ -6,6 +6,7 @@ import MyOrder from '../MyOrder'
 import MyOrders from '../MyOrders'
 import NotFound from '../NotFound'
 import SignIn from '../SignIn'
+import SignUp from '../SignUp'
 import './App.css'
 
 const router = createBrowserRouter([
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
   { path: '/my-orders/last', element: <MyOrder /> },
   { path: '/my-orders/:id', element: <MyOrder /> },
   { path: '/sign-in', element: <SignIn /> },
+  { path: '/sign-up', element: <SignUp /> },
   { path: '/*', element: <NotFound /> },
 ])
 
