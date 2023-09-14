@@ -4,7 +4,7 @@ import { ShoppingCartContext } from '../../Context';
 import { addUser, addSignOutStatus } from '../../utils/localStorage';
 import Layout from '../../Components/Layout'
 
-function SignUp() {
+function SignUp({ edit }) {
   const context = useContext(ShoppingCartContext)
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ function SignUp() {
       context.setUser(userAdded);
       context.setSignOutStatus(false);
 
-      navigate('/')
+      if (edit) navigate('/my-account')
     }
   }
 
@@ -37,6 +37,7 @@ function SignUp() {
             type="text"
             name='name'
             placeholder='Peter'
+            defaultValue={edit && context.user?.name}
             className='w-full px-4 py-2 border border-black rounded-lg placeholder:font-light placeholder:text-sm placeholder:text-black/60 focus:outline-none' 
           />
         </div>
@@ -47,6 +48,7 @@ function SignUp() {
             type="email"
             name='email'
             placeholder='hi@helloworld.com'
+            defaultValue={edit && context.user?.email}
             className='w-full px-4 py-2 border border-black rounded-lg placeholder:font-light placeholder:text-sm placeholder:text-black/60 focus:outline-none'
           />
         </div>
@@ -57,10 +59,11 @@ function SignUp() {
             type="text"
             name='password'
             placeholder='******'
+            defaultValue={edit && context.user?.password}
             className='w-full px-4 py-2 border border-black rounded-lg placeholder:font-light placeholder:text-sm placeholder:text-black/60 focus:outline-none'
           />
         </div>
-        <button className='py-3 rounded-md bg-black disabled:bg-black/40 text-white'>Create</button>
+        <button className='py-3 rounded-md bg-black disabled:bg-black/40 text-white'>{edit ? 'Edit' : 'Create'}</button>
       </Form>
     </Layout>
   )
