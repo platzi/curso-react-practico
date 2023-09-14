@@ -11,3 +11,13 @@ export const addUser = ({ name, email, password }) => {
   localStorage.setItem('account', JSON.stringify(user));
   return user;
 }
+
+export const getSignOutStatus = () => {
+  return localStorage.getItem('sign-out') === "true";
+}
+
+export const addSignOutStatus = (isLogged) => {
+  const status = Boolean(isLogged);
+  localStorage.setItem('sign-out', status);
+  return status;
+}
