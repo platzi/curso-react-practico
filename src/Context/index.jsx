@@ -1,8 +1,13 @@
 import { createContext, useState, useEffect } from 'react'
+import { getSignOutStatus, getUser } from '../utils/localStorage';
 
 export const ShoppingCartContext = createContext()
 
 export const ShoppingCartProvider = ({children}) => {
+  // Login
+  const [user, setUser] = useState(getUser());
+  const [signOutStatus, setSignOutStatus] = useState(getSignOutStatus());
+
   // Shopping Cart · Increment quantity
   const [count, setCount] = useState(0)
 
@@ -76,6 +81,10 @@ export const ShoppingCartProvider = ({children}) => {
 
   return (
     <ShoppingCartContext.Provider value={{
+      user,
+      setUser,
+      signOutStatus,
+      setSignOutStatus,
       count,
       setCount,
       openProductDetail,
