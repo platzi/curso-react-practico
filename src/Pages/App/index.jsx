@@ -17,9 +17,6 @@ const AppRoutes = () => {
   const authRoute = <Navigate to='/sign-in' replace />;
   const homeRoute = <Navigate to='/' replace />;
 
-  if (isLoggedUser) console.log(`El usuario "${context.user?.name}" se encuentra autenticado`)
-  else console.log(`NO hay un usuario autenticado`)
-
   const router = createBrowserRouter([
     { path: '/', element: <Home /> },
     { path: '/clothes', element: <Home /> },
@@ -32,8 +29,8 @@ const AppRoutes = () => {
     { path: '/my-orders', element: <MyOrders /> },
     { path: '/my-orders/last', element: <MyOrder /> },
     { path: '/my-orders/:id', element: <MyOrder /> },
-    { path: '/sign-in', element: <SignIn /> },
-    { path: '/sign-up', element: <SignUp /> },
+    { path: '/sign-in', element: !isLoggedUser ? <SignIn /> : homeRoute },
+    { path: '/sign-up', element: !isLoggedUser ? <SignUp /> : homeRoute },
     { path: '/*', element: <NotFound /> },
   ])
 
