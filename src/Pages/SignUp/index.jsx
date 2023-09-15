@@ -28,7 +28,7 @@ function SignUp({ edit }) {
 
   return (
     <Layout>
-      <Form onSubmit={formHandler} className='grid gap-4 w-80'>
+      <Form onSubmit={formHandler} className='grid gap-4 w-full max-w-xs'>
         <h1 className='text-center text-xl font-medium mb-2'>Welcome</h1>
         <div>
           <label className='block mb-1 text-sm font-light'>Your name: </label>
