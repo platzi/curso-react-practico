@@ -16,25 +16,25 @@ function Home() {
       )
     } else {
       return (
-        <div>We don't have anything :(</div>
+        <div className='col-span-full text-center'>We don't have anything :(</div>
       )
     }
   }
 
   return (
     <Layout>
-      <div className='flex items-center justify-center relative w-80 mb-4'>
-        <h1 className='font-medium text-xl'>Exclusive Products</h1>
+      <div className='flex flex-col items-center gap-y-4 w-full max-w-screen-lg'>
+        <h1 className=' font-medium text-xl'>Exclusive Products</h1>
+        <input
+          type="text"
+          placeholder='Search a product'
+          className='w-full max-w-xs rounded-lg border border-black p-4 focus:outline-none'
+          onChange={(event) => context.setSearchByTitle(event.target.value)} />
+        <div className='grid grid-cols-[repeat(auto-fill,225px)] justify-center gap-4 w-full'>
+          {renderView()}
+        </div>
+        <ProductDetail />
       </div>
-      <input
-        type="text"
-        placeholder='Search a product'
-        className='rounded-lg border border-black w-80 p-4 mb-4 focus:outline-none'
-        onChange={(event) => context.setSearchByTitle(event.target.value)} />
-      <div className='grid gap-4 grid-cols-4 w-full max-w-screen-lg'>
-        {renderView()}
-      </div>
-      <ProductDetail />
     </Layout>
   )
 }
