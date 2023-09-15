@@ -1,5 +1,14 @@
 .product-detail {
-  width: 360px;
-  height: calc(100vh - 68px);
-  top: 68px;
+  width: 100%;
+  height: auto;
+  bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .product-detail {
+    width: 360px;
+    height: calc(100vh - 68px);
+    top: 68px;
+    bottom: auto;
+  }
 }
