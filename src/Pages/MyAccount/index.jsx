@@ -8,7 +8,7 @@ function MyAccount() {
 
   return (
     <Layout>
-      <div className='grid gap-6 w-80'>
+      <div className='grid gap-6 w-full max-w-xs'>
         <h1 className='text-center text-xl font-medium'>My account</h1>
         <div className='text-sm font-light leading-6'>
           <p>Name: <span className='text-base font-normal'>{context.user?.name}</span></p>
