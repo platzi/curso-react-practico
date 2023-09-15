@@ -16,7 +16,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light'>
+    <nav className={`${isLoggedUser ? 'grid justify-center justify-items-center md:flex md:justify-between gap-y-2' : 'flex justify-between'} items-center fixed z-10 top-0 w-full py-5 px-8 bg-white text-sm font-light`}>
       <ul className='flex items-center gap-3'>
         <li className='font-semibold text-lg'>
           <NavLink to='/'>
@@ -91,7 +91,7 @@ const Navbar = () => {
       <ul className='flex items-center gap-3'>
         { isLoggedUser &&
           <>
-          <li className='text-black/60'>
+          <li className='hidden lg:block text-black/60'>
             {context.user?.email}
           </li>
           <li>
