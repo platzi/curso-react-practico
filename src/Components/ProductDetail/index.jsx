@@ -8,8 +8,8 @@ const ProductDetail = () => {
 
   return (
     <aside
-      className={`${context.isProductDetailOpen ? 'flex' : 'hidden'} product-detail flex-col fixed right-0 border border-black rounded-lg bg-white`}>
-      <div className='flex justify-between items-center p-6'>
+      className={`${context.isProductDetailOpen ? 'flex' : 'hidden'} product-detail flex-col fixed right-0 border border-black rounded-lg bg-white overflow-x-auto`}>
+      <div className='flex justify-between items-center p-6 pb-0'>
         <h2 className='font-medium text-xl'>Detail</h2>
         <div>
           <XMarkIcon
@@ -17,9 +17,9 @@ const ProductDetail = () => {
             onClick={() => context.closeProductDetail()}></XMarkIcon>
         </div>
       </div>
-      <figure className='px-6'>
+      <figure className='hidden md:block pt-6 px-6'>
         <img
-          className='w-full h-full rounded-lg'
+          className='w-full rounded-lg'
           src={context.productToShow.images}
           alt={context.productToShow.title} />
       </figure>
