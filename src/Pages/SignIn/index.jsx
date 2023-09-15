@@ -14,8 +14,8 @@ function SignIn() {
 
   return (
     <Layout>
-      <div className='grid gap-4 w-80'>
-        <h1 className='text-center text-xl font-medium mb-2'>Welcome</h1>
+      <div className='grid gap-4 w-full max-w-xs'>
+        <h1 className='text-center text-xl font-medium mx-2'>Welcome</h1>
         <div className='text-sm font-light leading-6'>
           <p>Email: <span className='text-base font-normal'>{context.user?.email}</span></p>
           <p>Password: <span className='text-base font-normal'>{context.user?.password}</span></p>
