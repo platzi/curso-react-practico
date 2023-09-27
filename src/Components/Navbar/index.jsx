@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { NavLink, json } from 'react-router-dom'
+import { NavLink} from 'react-router-dom'
 import { ShoppingBagIcon } from '@heroicons/react/24/solid'
 import { ShoppingCartContext } from '../../Context'
 
@@ -24,17 +24,16 @@ const Navbar = () => {
         <li>
           <NavLink
             to='/sign-in'
-            onClick={() => handleSignOut()}
             className={({ isActive }) =>
-              isActive ? activeStyle : undefined
-            }>
+            isActive ? activeStyle : undefined}
+            onClick={() => handleSignOut()}>
             Sign Out
           </NavLink>
         </li>
       )
     } else {
       return (
-        <ul className='flex items-center gap-3'>
+        <>
           <li className='text-black/60'>
             satochinakamoto@email.com
           </li>
@@ -59,10 +58,9 @@ const Navbar = () => {
         <li>
           <NavLink
             to='/sign-in'
-            onClick={() => handleSignOut()}
             className={({ isActive }) =>
-              isActive ? activeStyle : undefined
-            }>
+              isActive ? activeStyle : undefined}
+              onClick={() => handleSignOut()}>
             Sign Out
           </NavLink>
         </li>
@@ -70,7 +68,7 @@ const Navbar = () => {
           <ShoppingBagIcon className='h-6 w-6 text-black'></ShoppingBagIcon>
           <div>{context.cartProducts.length}</div>
         </li>
-      </ul>
+      </>
       )
     }
   }
