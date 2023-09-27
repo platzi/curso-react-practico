@@ -37,38 +37,34 @@ const Navbar = () => {
           <li className='text-black/60'>
             satochinakamoto@email.com
           </li>
-        <li>
-          <NavLink
-            to='/my-orders'
-            className={({ isActive }) =>
-              isActive ? activeStyle : undefined
-            }>
-            My Orders
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to='/my-account'
-            className={({ isActive }) =>
-              isActive ? activeStyle : undefined
-            }>
-            My Account
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to='/sign-in'
-            className={({ isActive }) =>
-              isActive ? activeStyle : undefined}
-              onClick={() => handleSignOut()}>
-            Sign Out
-          </NavLink>
-        </li>
-        <li className='flex items-center'>
-          <ShoppingBagIcon className='h-6 w-6 text-black'></ShoppingBagIcon>
-          <div>{context.cartProducts.length}</div>
-        </li>
-      </>
+          <li>
+            <NavLink
+              to='/my-orders'
+              className={({ isActive }) =>
+                isActive ? activeStyle : undefined
+              }>
+              My Orders
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to='/my-account'
+              className={({ isActive }) =>
+                isActive ? activeStyle : undefined
+              }>
+              My Account
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to='/sign-in'
+              className={({ isActive }) =>
+                isActive ? activeStyle : undefined}
+                onClick={() => handleSignOut()}>
+              Sign Out
+            </NavLink>
+          </li>
+        </>
       )
     }
   }
