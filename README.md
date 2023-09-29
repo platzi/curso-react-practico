@@ -2,7 +2,9 @@
 Curso de React.js con Vite.js y TailwindCSS.
 
 
-Hola!
+**Hola!**
+
+Comparto el proyecto finalizado través del siguiente link, https://liwgar.github.io/curso-react-practico.
 
 El reto para esta pruba tecnica fue, el de implementar Local Storage en un Ecommerce profesional 
 para completar el flujo de compra de los usuarios. Completando los siguientes requisitos. 
