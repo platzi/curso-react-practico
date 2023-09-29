@@ -123,6 +123,7 @@ export const ShoppingCartProvider = ({children}) => {
     }
   }
 
+  
   useEffect(() => {
     if (searchByTitle && searchByCategory) setFilteredItems(filterBy('BY_TITLE_AND_CATEGORY', items, searchByTitle, searchByCategory))
     if (searchByTitle && !searchByCategory) setFilteredItems(filterBy('BY_TITLE', items, searchByTitle, searchByCategory))
