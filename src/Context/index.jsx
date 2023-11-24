@@ -6,24 +6,54 @@ export const ShoppingCartProvider = ({ children }) => {
   // Shopping Cart · Increment quantity
   const [count, setCount] = useState(0);
 
+  //check account
+  const createAccount = (name, email, password) => {
+    const accountToLocalStorage = {
+      name: name,
+      email: email,
+      password: password,
+    };
+    localStorage.setItem("account", JSON.stringify(accountToLocalStorage));
+  };
+
   //Verify Login
   const [login, setLogin] = useState(false);
+  const [parseInfo, setParseInfo] = useState("");
   useEffect(() => {
     const localStorageSignStatus = localStorage.getItem("sign-out");
+    const localStorageAccount = localStorage.getItem("account");
 
-    if (!localStorageSignStatus) {
+    if (!localStorageSignStatus || !localStorageAccount) {
       localStorage.setItem("sign-out", true);
-      console.log("creado");
+      localStorage.setItem("account", "");
+      setLogin(false);
     } else {
-      if (JSON.parse(localStorage.getItem("sign-out")) == false) {
-        console.log("dentro");
-        setLogin(true);
-      } else {
-        console.log("afuera");
-        setLogin(false);
-      }
+      setParseInfo(JSON.parse(localStorageAccount));
+      localStorage.setItem("sign-out", false);
+      setLogin(true);
     }
   }, []);
+  // const signIn = () => {
+  //   localStorage.setItem("sign-out", false);
+  //   setLogin(true);
+  // };
+  const signOut = () => {
+    localStorage.setItem("sign-out", true);
+    setLogin(false);
+    verifyData();
+  };
+  const verifyData = () => {
+    const localStorageAccount = localStorage.getItem("account");
+    if (localStorageAccount) {
+      setLogin(true);
+    }
+  };
+  const register = () => {
+    setLogin(true);
+    localStorage.removeItem("sign-out");
+    localStorage.setItem("sign-out", false);
+    console.log("a");
+  };
 
   // Product Detail · Open/Close
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
@@ -139,6 +169,11 @@ export const ShoppingCartProvider = ({ children }) => {
         searchByCategory,
         setSearchByCategory,
         login,
+        createAccount,
+        parseInfo,
+        setLogin,
+        signOut,
+        register,
       }}
     >
       {children}
