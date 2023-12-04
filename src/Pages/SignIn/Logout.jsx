@@ -20,7 +20,6 @@ function Logout() {
       <span
         onClick={() => {
           context.register();
-          
           navigateHome();
         }}
         className="mt-5 text-white h-14 flex justify-center items-center rounded-lg text-lg  bg-black cursor-pointer"

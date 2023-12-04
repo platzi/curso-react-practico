@@ -6,53 +6,59 @@ export const ShoppingCartProvider = ({ children }) => {
   // Shopping Cart · Increment quantity
   const [count, setCount] = useState(0);
 
-  //check account
+  //create account
   const createAccount = (name, email, password) => {
     const accountToLocalStorage = {
-      name: name,
-      email: email,
-      password: password,
+      name,
+      email,
+      password,
     };
     localStorage.setItem("account", JSON.stringify(accountToLocalStorage));
+    setParseInfo(accountToLocalStorage);
   };
 
   //Verify Login
   const [login, setLogin] = useState(false);
-  const [parseInfo, setParseInfo] = useState("");
+  const [haveAccount, setHaveAccount] = useState(false);
+  const [parseInfo, setParseInfo] = useState({});
   useEffect(() => {
     const localStorageSignStatus = localStorage.getItem("sign-out");
     const localStorageAccount = localStorage.getItem("account");
 
-    if (!localStorageSignStatus || !localStorageAccount) {
+    if (localStorageSignStatus === null) {
       localStorage.setItem("sign-out", true);
       localStorage.setItem("account", "");
       setLogin(false);
-    } else {
-      setParseInfo(JSON.parse(localStorageAccount));
-      localStorage.setItem("sign-out", false);
+    }
+    if (localStorageAccount) {
+      try {
+        const parsedAccount = JSON.parse(localStorageAccount);
+        setParseInfo(parsedAccount);
+      } catch (error) {
+        console.error("Error parsing account details:", error);
+      }
+    }
+    if (localStorageAccount === null) {
+      setLogin(false);
+      setHaveAccount(false);
+    }
+    if (localStorageSignStatus === "false") {
       setLogin(true);
+      setHaveAccount(true);
+    }
+    if (localStorageSignStatus === "true" && localStorageAccount !== null) {
+      setLogin(false);
     }
   }, []);
-  // const signIn = () => {
-  //   localStorage.setItem("sign-out", false);
-  //   setLogin(true);
-  // };
   const signOut = () => {
+    localStorage.removeItem("sign-out");
     localStorage.setItem("sign-out", true);
     setLogin(false);
-    verifyData();
-  };
-  const verifyData = () => {
-    const localStorageAccount = localStorage.getItem("account");
-    if (localStorageAccount) {
-      setLogin(true);
-    }
   };
   const register = () => {
     setLogin(true);
     localStorage.removeItem("sign-out");
     localStorage.setItem("sign-out", false);
-    console.log("a");
   };
 
   // Product Detail · Open/Close
@@ -174,6 +180,8 @@ export const ShoppingCartProvider = ({ children }) => {
         setLogin,
         signOut,
         register,
+        haveAccount,
+        setHaveAccount,
       }}
     >
       {children}
