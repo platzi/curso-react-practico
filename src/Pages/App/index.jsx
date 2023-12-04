@@ -9,7 +9,6 @@ import SignIn from "../SignIn";
 import Navbar from "../../Components/Navbar";
 import CheckoutSideMenu from "../../Components/CheckoutSideMenu";
 import SignUp from "../SignIn/SignUp";
-import PrivateRoute from "../../Components/PrivateRoute";
 import "./App.css";
 
 const AppRoutes = () => {
@@ -29,23 +28,6 @@ const AppRoutes = () => {
     { path: "/sign-up", element: <SignUp /> },
     { path: "/*", element: <NotFound /> },
   ]);
-  // let routes = useRoutes([
-  //   { path: "/", element: <PrivateRoute element={<Home />} /> },
-  //   { path: "/clothes", element: <PrivateRoute element={<Home />} /> },
-  //   { path: "/electronics", element: <PrivateRoute element={<Home />} /> },
-  //   { path: "/furnitures", element: <PrivateRoute element={<Home />} /> },
-  //   { path: "/toys", element: <PrivateRoute element={<Home />} /> },
-  //   { path: "/others", element: <PrivateRoute element={<Home />} /> },
-  //   { path: "/my-account", element: <MyAccount /> },
-  //   { path: "/my-order", element: <MyOrder /> },
-  //   { path: "/my-orders", element: <MyOrders /> },
-  //   { path: "/my-orders/last", element: <MyOrder /> },
-  //   { path: "/my-orders/:id", element: <MyOrder /> },
-  //   { path: "/sign-in", element: <SignIn /> },
-  //   { path: "/sign-up", element: <SignUp /> },
-  //   { path: "/*", element: <NotFound /> },
-  // ]);
-
   return routes;
 };
 
