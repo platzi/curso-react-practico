@@ -11,6 +11,7 @@ import CheckoutSideMenu from "../../Components/CheckoutSideMenu";
 import SignUp from "../SignIn/SignUp";
 import PrivateRoute from "../../Components/PrivateRoute";
 import "./App.css";
+import Edit from "../MyAccount/Edit";
 
 const AppRoutes = () => {
   let routes = useRoutes([
@@ -21,6 +22,7 @@ const AppRoutes = () => {
     { path: "/toys", element: <PrivateRoute element={<Home />} /> },
     { path: "/others", element: <PrivateRoute element={<Home />} /> },
     { path: "/my-account", element: <PrivateRoute element={<MyAccount />} /> },
+    { path: "/my-account/edit", element: <PrivateRoute element={<Edit />} /> },
     { path: "/my-order", element: <PrivateRoute element={<MyOrder />} /> },
     { path: "/my-orders", element: <PrivateRoute element={<MyOrders />} /> },
     {

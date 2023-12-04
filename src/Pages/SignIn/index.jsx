@@ -19,7 +19,12 @@ function SignIn() {
     }
   }, [setHaveAccount]);
 
-  return <Layout>{haveAccount ? <Logout /> : <Login />}</Layout>;
+  return (
+    <Layout>
+      <h1 className="font-medium text-xl text-center mb-6 w-80">Welcome</h1>
+      {haveAccount ? <Logout /> : <Login />}
+    </Layout>
+  );
 }
 
 export default SignIn;

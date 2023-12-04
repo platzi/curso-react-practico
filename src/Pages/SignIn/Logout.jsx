@@ -15,7 +15,7 @@ function Logout() {
         Email: <span className="font-medium">{parseInfo.email}</span>
       </p>
       <p className="font-light">
-        Password: <span className="font-medium">{parseInfo.password}</span>
+        Password: <span className="font-medium">******</span>
       </p>
       <span
         onClick={() => {
