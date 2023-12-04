@@ -12,7 +12,7 @@ function Logout() {
   return (
     <div className="w-80 flex flex-col mt-4">
       <p className="font-light">
-        Email: <span className="font-medium">{parseInfo.name}</span>
+        Email: <span className="font-medium">{parseInfo.email}</span>
       </p>
       <p className="font-light">
         Password: <span className="font-medium">{parseInfo.password}</span>
