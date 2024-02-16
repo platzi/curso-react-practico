@@ -1,8 +1,13 @@
 import { createContext, useState, useEffect } from 'react'
+import { useLocalStorage } from '../hooks/useLocalStorage'
+
 
 export const ShoppingCartContext = createContext()
 
 export const ShoppingCartProvider = ({children}) => {
+   //hook para usar localStorage
+   const localStorageHook = useLocalStorage()
+
   // Shopping Cart · Increment quantity
   const [count, setCount] = useState(0)
 
@@ -35,10 +40,26 @@ export const ShoppingCartProvider = ({children}) => {
   // Get products by category
   const [searchByCategory, setSearchByCategory] = useState(null)
 
+  // User Information
+  const [user, setUser] = useState(null)
+  const [isLogged, setIsLogged] = useState(false)
+
   useEffect(() => {
     fetch('https://api.escuelajs.co/api/v1/products')
       .then(response => response.json())
       .then(data => setItems(data))
+  }, [])
+
+  useEffect( () => {
+    const localStorageUser = localStorageHook.readLocalStorage('user')
+    const localStorageFlag = localStorageHook.readLocalStorage('isLogged')
+    if (!localStorageUser) {
+      if (localStorageFlag !== null){
+        localStorageHook.saveLocalStorage('isLogged', false)
+      }
+    }
+    if (localStorageUser) setUser(localStorageUser)
+    if (localStorageFlag !== null) setIsLogged(localStorageFlag)
   }, [])
 
   const filteredItemsByTitle = (items, searchByTitle) => {
@@ -74,6 +95,29 @@ export const ShoppingCartProvider = ({children}) => {
     if (!searchByTitle && !searchByCategory) setFilteredItems(filterBy(null, items, searchByTitle, searchByCategory))
   }, [items, searchByTitle, searchByCategory])
 
+  //funciones para el manejo de inicio de sesión.
+  //SinUp. Cuando creo un nuevo usuario.
+  const signUpUser = (user) => {
+    localStorageHook.saveLocalStorage('user', user)
+    localStorageHook.saveLocalStorage('isLogged', true)
+    setUser(user)
+    setIsLogged(true)
+  }
+  // Log In, cuando el usuario esta creado (en el localStorage) pero se está fuera de la aplicación
+  const logInUser = () => {
+    if (user && !isLogged) {
+      setIsLogged(true)
+      localStorageHook.saveLocalStorage('isLogged', true)
+    }
+  }
+  //LogOut. Cuando cierro sesión pero no borro los datos de la cuenta.
+  const logOutUser = () => {
+    if (user && isLogged) {
+      setIsLogged(false)
+      localStorageHook.saveLocalStorage('isLogged', false)
+    }
+  }
+
   return (
     <ShoppingCartContext.Provider value={{
       count,
@@ -96,7 +140,12 @@ export const ShoppingCartProvider = ({children}) => {
       setSearchByTitle,
       filteredItems,
       searchByCategory,
-      setSearchByCategory
+      setSearchByCategory,
+      user, 
+      isLogged,
+      signUpUser, 
+      logInUser, 
+      logOutUser
     }}>
       {children}
     </ShoppingCartContext.Provider>
