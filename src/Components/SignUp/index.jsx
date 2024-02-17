@@ -31,7 +31,7 @@ export const SignUp = () => {
     return (
         <div className="signUp-container flex flex-col w-80">
         <h2 className='font-bold mb-3 text-center text-lg'>Welcome</h2>
-        <form action="">
+        <form action="" id='signUp_form'>
           <div className="input-container flex flex-col mb-4">
             <label htmlFor="name" className='text-sm'>Your Name:</label>
             <input type="text" id='name' name='name' placeholder='John Doe' value={newUser.name} onChange={handleInputChange} className='py-2 px-4 border border-slate-900 rounded-lg outline-none'/>
