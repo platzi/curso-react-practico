@@ -9,26 +9,31 @@ import SignIn from '../SignIn'
 import Navbar from '../../Components/Navbar'
 import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
 import './App.css'
+import { ProtectedRoute } from '../../Components/ProtectedRoute'
 
 const AppRoutes = () => {
   let routes = useRoutes([
-    { path: '/', element: <Home /> },
-    { path: '/clothes', element: <Home /> },
-    { path: '/electronics', element: <Home /> },
-    { path: '/furnitures', element: <Home /> },
-    { path: '/toys', element: <Home /> },
-    { path: '/othes', element: <Home /> },
-    { path: '/my-account', element: <MyAccount /> },
-    { path: '/my-order', element: <MyOrder /> },
-    { path: '/my-orders', element: <MyOrders /> },
-    { path: '/my-orders/last', element: <MyOrder /> },
-    { path: '/my-orders/:id', element: <MyOrder /> },
+    {element: <ProtectedRoute />, children: [
+      { path: '/', element: <Home /> },
+      { path: '/clothes', element: <Home /> },
+      { path: '/electronics', element: <Home /> },
+      { path: '/furnitures', element: <Home /> },
+      { path: '/toys', element: <Home /> },
+      { path: '/othes', element: <Home /> },
+      { path: '/my-account', element: <MyAccount /> },
+      { path: '/my-order', element: <MyOrder /> },
+      { path: '/my-orders', element: <MyOrders /> },
+      { path: '/my-orders/last', element: <MyOrder /> },
+      { path: '/my-orders/:id', element: <MyOrder /> },
+    ]},
     { path: '/sign-in', element: <SignIn /> },
     { path: '/*', element: <NotFound /> },
   ])
 
   return routes
 }
+
+
 
 const App = () => {
   return (
