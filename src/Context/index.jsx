@@ -15,6 +15,7 @@ export const ShoppingCartProvider = ({children}) => {
   const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false)
   const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
   const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
+  const toggleCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(!isCheckoutSideMenuOpen)
 
   // Product Detail · Show product
   const [productToShow, setProductToShow] = useState({})
@@ -34,6 +35,15 @@ export const ShoppingCartProvider = ({children}) => {
 
   // Get products by category
   const [searchByCategory, setSearchByCategory] = useState(null)
+
+  // All about Local Storage
+  const [userData, setUserData] = useState({})
+  const [users, setUsers] = useState(JSON.parse(localStorage.getItem("USERS_V1")) || [])
+
+  const saveUsers = (newArray) => {
+    localStorage.setItem("USERS_V1", JSON.stringify(newArray));
+    setUsers(newArray);
+}
 
   useEffect(() => {
     fetch('https://api.escuelajs.co/api/v1/products')
@@ -88,6 +98,7 @@ export const ShoppingCartProvider = ({children}) => {
       isCheckoutSideMenuOpen,
       openCheckoutSideMenu,
       closeCheckoutSideMenu,
+      toggleCheckoutSideMenu,
       order,
       setOrder,
       items,
@@ -96,7 +107,11 @@ export const ShoppingCartProvider = ({children}) => {
       setSearchByTitle,
       filteredItems,
       searchByCategory,
-      setSearchByCategory
+      setSearchByCategory,
+      userData,
+      setUserData,
+      users,
+      saveUsers
     }}>
       {children}
     </ShoppingCartContext.Provider>
