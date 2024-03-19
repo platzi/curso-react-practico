@@ -3,6 +3,10 @@ import { createContext, useState, useEffect } from 'react'
 export const ShoppingCartContext = createContext()
 
 export const ShoppingCartProvider = ({children}) => {
+
+  // NavBar underline color categories
+  const activeStyle = 'underline underline-offset-4'
+
   // Shopping Cart · Increment quantity
   const [count, setCount] = useState(0)
 
@@ -86,6 +90,7 @@ export const ShoppingCartProvider = ({children}) => {
 
   return (
     <ShoppingCartContext.Provider value={{
+      activeStyle,
       count,
       setCount,
       openProductDetail,
