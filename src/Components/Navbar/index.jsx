@@ -104,7 +104,7 @@ const Navbar = () => {
           (context.logout === false) ? (
             <button
             onClick={() => context.setLogout(true)}
-            >Sign Out</button>
+            >Log Out</button>
           ) : (
             <li>
             <NavLink
