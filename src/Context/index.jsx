@@ -44,6 +44,18 @@ export const ShoppingCartProvider = ({children}) => {
   const [userData, setUserData] = useState({})
   const [users, setUsers] = useState(JSON.parse(localStorage.getItem("USERS_V1")) || [])
 
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const [logout, setLogout] = useState(() => {
+    const storedLogout = localStorage.getItem("LOGOUT");
+    return storedLogout ? JSON.parse(storedLogout) : true;
+  })
+  
+  useEffect(() => {
+    localStorage.setItem("LOGOUT", JSON.stringify(logout));
+  }, [logout])
+
   const saveUsers = (newArray) => {
     localStorage.setItem("USERS_V1", JSON.stringify(newArray));
     setUsers(newArray);
@@ -116,7 +128,13 @@ export const ShoppingCartProvider = ({children}) => {
       userData,
       setUserData,
       users,
-      saveUsers
+      saveUsers,
+      email,
+      setEmail,
+      password,
+      setPassword,
+      logout,
+      setLogout,
     }}>
       {children}
     </ShoppingCartContext.Provider>

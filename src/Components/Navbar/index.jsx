@@ -99,15 +99,25 @@ const Navbar = () => {
             My Account
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            to='/sign-in'
-            className={({ isActive }) =>
-            isActive ? context.activeStyle : undefined
-            }>
-            Sign In
-          </NavLink>
-        </li>
+        
+        {
+          (context.logout === false) ? (
+            <button
+            onClick={() => context.setLogout(true)}
+            >Sign Out</button>
+          ) : (
+            <li>
+            <NavLink
+              to='/sign-in'
+              className={({ isActive }) =>
+              isActive ? context.activeStyle : undefined
+              }>
+              Sign In
+            </NavLink>
+          </li>
+          )
+        }
+
         <li
         className='flex items-center cursor-pointer'
         onClick={() => context.toggleCheckoutSideMenu()}>

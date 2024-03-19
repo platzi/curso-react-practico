@@ -60,7 +60,7 @@ function SignUp() {
                 <Link className={`font-normal ${activeStyle}`} to='/sign-in'>Sign In here</Link>
                 </span>
             </p>
-            <Link to='/' className='w-full'>
+            <Link to='/sign-in' className='w-full'>
                 <button
                 type='button'
                 className='mt-5 font-semibold text-lg text-white bg-black rounded-lg w-full h-14 p-2'
