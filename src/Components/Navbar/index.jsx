@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { ShoppingBagIcon } from '@heroicons/react/24/solid'
 import { ShoppingCartContext } from '../../Context'
 
@@ -109,9 +109,11 @@ const Navbar = () => {
         
         {
           (context.logout === false) ? (
+            <Link to='/sign-in'>
             <button
             onClick={() => context.setLogout(true)}
             >Log Out</button>
+            </Link>
           ) : (
             <li>
             <NavLink
