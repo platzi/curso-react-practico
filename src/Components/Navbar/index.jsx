@@ -5,6 +5,17 @@ import { ShoppingCartContext } from '../../Context'
 
 const Navbar = () => {
   const context = useContext(ShoppingCartContext)
+  const location = useLocation()
+
+  const logoutTrueAndloggedInFalse = () => {
+    const updatedUsers = context.users.map(user => {
+      return { ...user, loggedIn: false }
+    })
+    localStorage.setItem('USERS_V1', JSON.stringify(updatedUsers))
+    localStorage.setItem('LOGGED_USER', JSON.stringify({}))
+    context.closeCheckoutSideMenu()
+    context.setLogout(true)
+  }
 
   return (
     <nav className='flex justify-between items-center fixed z-10 bg-white shadow-lg shadow-gray-800/50 top-0 w-full py-5 px-6 text-sm font-light'>
@@ -79,9 +90,20 @@ const Navbar = () => {
 
       <ul className='flex items-center gap-3'>
 
-        <li className='text-black/60'>
-        {(context.logout === false) ? (context.users[0]?.email) : (undefined)}
-        </li>
+        {
+          context.logout === false
+          ?
+          (() => {
+            
+            return (
+              <li className='text-black/60'>
+                {context.loggedUser.email}
+              </li>
+            )
+          })()
+          :
+          null
+        }
 
         <li>
         {(context.logout === false) ? (
@@ -111,13 +133,14 @@ const Navbar = () => {
           (context.logout === false) ? (
             <Link to='/sign-in'>
             <button
-            onClick={() => context.setLogout(true)}
+            onClick={() => logoutTrueAndloggedInFalse()}
             >Log Out</button>
             </Link>
           ) : (
             <li>
             <NavLink
               to='/sign-in'
+              onClick={context.closeCheckoutSideMenu}
               className={({ isActive }) =>
               isActive ? context.activeStyle : undefined
               }>
@@ -127,10 +150,10 @@ const Navbar = () => {
           )
         }
 
-        {useLocation().pathname !== '/sign-in' && useLocation().pathname !== '/sign-up' ? (
+        {location.pathname !== '/sign-in' && location.pathname !== '/sign-up' ? (
           <li
           className='flex items-center cursor-pointer'
-          onClick={() => context.toggleCheckoutSideMenu()}>
+          onClick={context.toggleCheckoutSideMenu}>
             <ShoppingBagIcon className='h-6 w-6 text-black'></ShoppingBagIcon>
             <div>{context.cartProducts.length}</div>
           </li>

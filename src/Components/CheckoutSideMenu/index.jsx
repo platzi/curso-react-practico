@@ -25,6 +25,7 @@ const CheckoutSideMenu = () => {
     context.setOrder([...context.order, orderToAdd])
     context.setCartProducts([])
     context.setSearchByTitle(null)
+    context.closeCheckoutSideMenu()
   }
 
   return (
@@ -57,9 +58,20 @@ const CheckoutSideMenu = () => {
           <span className='font-light'>Total:</span>
           <span className='font-medium text-2xl'>${totalPrice(context.cartProducts)}</span>
         </p>
-        <Link to='/my-orders/last'>
-          <button className='bg-black py-3 text-white w-full rounded-lg' onClick={() => handleCheckout()}>Checkout</button>
+
+      {
+        context.logout === false ? (
+          <Link to='/my-orders/last'>
+          <button
+          className='bg-black py-3 text-white w-full rounded-lg'
+          onClick={() => handleCheckout()}
+          >Checkout</button>
         </Link>
+        ) : (
+          null
+        )
+      }
+
       </div>
     </aside>
   )

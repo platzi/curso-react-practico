@@ -18,8 +18,8 @@ function SignUp() {
     const addUser = () => {
         const newArray = [...users]
         newArray.push({
-            id: uuidv4(),
             ...userData,
+            id: uuidv4()
         })
         saveUsers(newArray);
     }
@@ -30,11 +30,11 @@ function SignUp() {
             <form className='flex flex-col justify-around items-center p-3 gap-3 w-1/3 h-2/5'>
             <h1 className='font-semibold text-lg'>Create Account</h1>
             <p className='w-full'>
-                <span>Your name:</span>
+                <span>Your username:</span>
                 <input
                 type='text'
                 name='name'
-                placeholder='Complete name'
+                placeholder='Username'
                 className='rounded-md border border-black p-2 w-full'
                 onChange={getUserData}/>
             </p>

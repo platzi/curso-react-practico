@@ -4,7 +4,7 @@ import { ShoppingCartContext } from '../../Context'
 
 function MyAccount() {
 
-  const { users } = useContext(ShoppingCartContext)
+  const context = useContext(ShoppingCartContext)
 
   return (
     <Layout>
@@ -12,15 +12,15 @@ function MyAccount() {
         <h1 className='flex justify-center text-lg font-semibold'>MyAccount</h1>
         <p className='flex'>
           <span>Username :</span>
-          <span className='font-semibold'>&nbsp;{users[0]?.name}</span>
+          <span className='font-semibold'>&nbsp;{context.loggedUser.name}</span>
         </p>
         <p className='flex'>
           <span>Email :</span>
-          <span className='font-semibold'>&nbsp;{users[0]?.email}</span>
+          <span className='font-semibold'>&nbsp;{context.loggedUser.email}</span>
         </p>
         <p className='flex'>
           <span>Password :</span>
-          <span className='font-semibold'>&nbsp;{users[0]?.password}</span>
+          <span className='font-semibold'>&nbsp;{context.loggedUser.password}</span>
         </p>
         <button type='button' className='flex justify-center p-3 w-full rounded-md border border-black font-semibold'>Edit</button>
       </form>

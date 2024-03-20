@@ -61,6 +61,10 @@ export const ShoppingCartProvider = ({children}) => {
     setUsers(newArray);
 }
 
+  const loggedUser = JSON.parse(localStorage.getItem('LOGGED_USER'))
+
+
+
   useEffect(() => {
     fetch('https://api.escuelajs.co/api/v1/products')
       .then(response => response.json())
@@ -135,6 +139,7 @@ export const ShoppingCartProvider = ({children}) => {
       setPassword,
       logout,
       setLogout,
+      loggedUser
     }}>
       {children}
     </ShoppingCartContext.Provider>
