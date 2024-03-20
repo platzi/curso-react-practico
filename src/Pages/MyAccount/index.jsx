@@ -8,8 +8,8 @@ function MyAccount() {
 
   return (
     <Layout>
-      <form className='flex flex-col justify-between w-1/3 mt-10 gap-6'>
-        <h1 className='flex justify-center text-lg font-bold'>MyAccount</h1>
+      <form className='flex flex-col justify-between w-1/3 mt-4 gap-6'>
+        <h1 className='flex justify-center text-lg font-semibold'>MyAccount</h1>
         <p className='flex'>
           <span>Username :</span>
           <span className='font-semibold'>&nbsp;{users[0]?.name}</span>
