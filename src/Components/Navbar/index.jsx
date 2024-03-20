@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { ShoppingBagIcon } from '@heroicons/react/24/solid'
 import { ShoppingCartContext } from '../../Context'
 
@@ -78,26 +78,33 @@ const Navbar = () => {
       </ul>
 
       <ul className='flex items-center gap-3'>
+
         <li className='text-black/60'>
         {(context.logout === false) ? (context.users[0]?.email) : (undefined)}
         </li>
+
         <li>
+        {(context.logout === false) ? (
           <NavLink
-            to='/my-orders'
-            className={({ isActive }) =>
-              isActive ? context.activeStyle : undefined
-            }>
-            My Orders
-          </NavLink>
+          to='/my-orders'
+          className={({ isActive }) =>
+            isActive ? context.activeStyle : undefined
+          }>
+          My Orders
+        </NavLink>
+        ) : (undefined)}
         </li>
+        
         <li>
+        {(context.logout === false) ? (
           <NavLink
-            to='/my-account'
-            className={({ isActive }) =>
-              isActive ? context.activeStyle : undefined
-            }>
-            My Account
-          </NavLink>
+          to='/my-account'
+          className={({ isActive }) =>
+            isActive ? context.activeStyle : undefined
+          }>
+          My Account
+        </NavLink>
+        ) : (undefined)}
         </li>
         
         {
@@ -118,12 +125,17 @@ const Navbar = () => {
           )
         }
 
-        <li
-        className='flex items-center cursor-pointer'
-        onClick={() => context.toggleCheckoutSideMenu()}>
-          <ShoppingBagIcon className='h-6 w-6 text-black'></ShoppingBagIcon>
-          <div>{context.cartProducts.length}</div>
-        </li>
+        {useLocation().pathname !== '/sign-in' && useLocation().pathname !== '/sign-up' ? (
+          <li
+          className='flex items-center cursor-pointer'
+          onClick={() => context.toggleCheckoutSideMenu()}>
+            <ShoppingBagIcon className='h-6 w-6 text-black'></ShoppingBagIcon>
+            <div>{context.cartProducts.length}</div>
+          </li>
+        ) : (
+          null
+        )}
+
       </ul>
 
     </nav>
