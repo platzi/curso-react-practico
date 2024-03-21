@@ -22,7 +22,7 @@ function SignIn() {
     <Layout>
       <div className='absolute top-0 flex items-center justify-center w-full h-screen'>
 
-        <form className='flex flex-col justify-around items-center p-3 gap-3 w-1/3 h-2/5'>
+        <form className='flex flex-col justify-around items-center p-3 gap-3 w-96 h-2/5'>
           <h1 className='font-semibold text-lg'>Welcome</h1>
           <p className='w-full'>
             <input

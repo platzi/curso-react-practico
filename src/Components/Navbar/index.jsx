@@ -1,7 +1,10 @@
 import { useContext } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { ShoppingBagIcon } from '@heroicons/react/24/solid'
+import { Bars3Icon } from '@heroicons/react/24/solid'
+import { UserCircleIcon } from '@heroicons/react/24/solid'
 import { ShoppingCartContext } from '../../Context'
+import './styles.css'
 
 const Navbar = () => {
   const context = useContext(ShoppingCartContext)
@@ -18,21 +21,24 @@ const Navbar = () => {
   }
 
   return (
-    <nav className='flex justify-between items-center fixed z-10 bg-white shadow-lg shadow-gray-800/50 top-0 w-full py-5 px-6 text-sm font-light'>
+    <nav className='navbar flex justify-between items-center fixed z-10 bg-white shadow-lg shadow-gray-800/50 top-0 w-full py-5 px-6 text-sm font-light'>
 
       <ul className='flex items-center gap-3'>
-        <li className='font-semibold text-lg'>
+        <li className='navbarLeft font-semibold text-lg'>
           <NavLink to='/'>
             Shopi
           </NavLink>
+        </li>
+        <li className='bars3Icon w-7 h-7'>
+          <Bars3Icon />
         </li>
         <li>
           <NavLink
             to='/'
             onClick={() => context.setSearchByCategory()}
-            className={({ isActive }) =>
+            className={`${({ isActive }) =>
               isActive ? context.activeStyle : undefined
-            }>
+            }, navbarLeft`}>
             All
           </NavLink>
         </li>
@@ -40,9 +46,9 @@ const Navbar = () => {
           <NavLink
             to='/clothes'
             onClick={() => context.setSearchByCategory('clothes')}
-            className={({ isActive }) =>
+            className={`${({ isActive }) =>
               isActive ? context.activeStyle : undefined
-            }>
+            }, navbarLeft`}>
             Clothes
           </NavLink>
         </li>
@@ -50,9 +56,9 @@ const Navbar = () => {
           <NavLink
             to='/electronics'
             onClick={() => context.setSearchByCategory('electronics')}
-            className={({ isActive }) =>
+            className={`${({ isActive }) =>
               isActive ? context.activeStyle : undefined
-            }>
+            }, navbarLeft`}>
             Electronics
           </NavLink>
         </li>
@@ -60,9 +66,9 @@ const Navbar = () => {
           <NavLink
             to='/furnitures'
             onClick={() => context.setSearchByCategory('furnitures')}
-            className={({ isActive }) =>
+            className={`${({ isActive }) =>
               isActive ? context.activeStyle : undefined
-            }>
+            }, navbarLeft`}>
             Furnitures
           </NavLink>
         </li>
@@ -70,9 +76,9 @@ const Navbar = () => {
           <NavLink
             to='/toys'
             onClick={() => context.setSearchByCategory('toys')}
-            className={({ isActive }) =>
+            className={`${({ isActive }) =>
               isActive ? context.activeStyle : undefined
-            }>
+            }, navbarLeft`}>
             Toys
           </NavLink>
         </li>
@@ -80,9 +86,9 @@ const Navbar = () => {
           <NavLink
             to='/others'
             onClick={() => context.setSearchByCategory('others')}
-            className={({ isActive }) =>
+            className={`${({ isActive }) =>
               isActive ? context.activeStyle : undefined
-            }>
+            }, navbarLeft`}>
             Others
           </NavLink>
         </li>
@@ -96,7 +102,7 @@ const Navbar = () => {
           (() => {
             
             return (
-              <li className='text-black/60'>
+              <li className='text-black/60 navbarRight'>
                 {context.loggedUser.email}
               </li>
             )
@@ -109,9 +115,9 @@ const Navbar = () => {
         {(context.logout === false) ? (
           <NavLink
           to='/my-orders'
-          className={({ isActive }) =>
+          className={`${({ isActive }) =>
             isActive ? context.activeStyle : undefined
-          }>
+        } navbarRight`}>
           My Orders
         </NavLink>
         ) : (undefined)}
@@ -121,9 +127,9 @@ const Navbar = () => {
         {(context.logout === false) ? (
           <NavLink
           to='/my-account'
-          className={({ isActive }) =>
-            isActive ? context.activeStyle : undefined
-          }>
+          className={`${({ isActive }) =>
+          isActive ? context.activeStyle : undefined
+      } navbarRight`}>
           My Account
         </NavLink>
         ) : (undefined)}
@@ -133,6 +139,7 @@ const Navbar = () => {
           (context.logout === false) ? (
             <Link to='/sign-in'>
             <button
+            className='navbarRight'
             onClick={() => logoutTrueAndloggedInFalse()}
             >Log Out</button>
             </Link>
@@ -160,6 +167,14 @@ const Navbar = () => {
         ) : (
           null
         )}
+
+        {
+          (context.logout === false) ? (
+            <UserCircleIcon className='userCricleIcon w-7 h-7' />
+          ) : (
+            null
+          )
+        }
 
       </ul>
 

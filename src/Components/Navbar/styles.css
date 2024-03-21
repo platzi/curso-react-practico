@@ -1,0 +1,21 @@
+@media (max-width: 856px) {
+    .navbar {
+        width: auto;
+    }
+    .navbarLeft {
+        display: none;
+    }
+    .navbarRight {
+        display: none;
+    }
+}
+
+@media (min-width: 857px) {
+    .bars3Icon {
+        display: none;
+    }
+
+    .userCricleIcon {
+        display: none;
+    }
+}
