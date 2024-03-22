@@ -7,6 +7,14 @@ export const ShoppingCartProvider = ({children}) => {
   // NavBar underline color categories
   const activeStyle = 'underline underline-offset-4'
 
+  // Modals whit React Portals
+  const [openResponsiveNavbarLeft, setOpenResponsiveNavbarLeft] = useState(false)
+  const toggleResponsiveNavbarLeft = () => setOpenResponsiveNavbarLeft(!openResponsiveNavbarLeft)
+  const closeResponsiveNavbarLeft = () => setOpenResponsiveNavbarLeft(false)
+  const [openResponsiveNavbarRight, setOpenResponsiveNavbarRight] = useState(false)
+  const toggleResponsiveNavbarRight = () => setOpenResponsiveNavbarRight(!openResponsiveNavbarRight)
+  const closeResponsiveNavbarRight = () => setOpenResponsiveNavbarRight(false)
+
   // Shopping Cart · Increment quantity
   const [count, setCount] = useState(0)
 
@@ -62,6 +70,16 @@ export const ShoppingCartProvider = ({children}) => {
 }
 
   const loggedUser = JSON.parse(localStorage.getItem('LOGGED_USER'))
+
+  const logoutTrueAndloggedInFalse = () => {
+    const updatedUsers = users.map(user => {
+      return { ...user, loggedIn: false }
+    })
+    localStorage.setItem('USERS_V1', JSON.stringify(updatedUsers))
+    localStorage.setItem('LOGGED_USER', JSON.stringify({}))
+    closeCheckoutSideMenu()
+    setLogout(true)
+  }
 
 
 
@@ -139,7 +157,14 @@ export const ShoppingCartProvider = ({children}) => {
       setPassword,
       logout,
       setLogout,
-      loggedUser
+      loggedUser,
+      openResponsiveNavbarLeft,
+      toggleResponsiveNavbarLeft,
+      closeResponsiveNavbarLeft,
+      openResponsiveNavbarRight,
+      toggleResponsiveNavbarRight,
+      closeResponsiveNavbarRight,
+      logoutTrueAndloggedInFalse,
     }}>
       {children}
     </ShoppingCartContext.Provider>

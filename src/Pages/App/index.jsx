@@ -1,5 +1,5 @@
 import { useRoutes, BrowserRouter } from 'react-router-dom'
-import { ShoppingCartProvider } from '../../Context'
+import { useContext } from 'react'
 import Home from '../Home'
 import MyAccount from '../MyAccount'
 import MyOrder from '../MyOrder'
@@ -9,6 +9,9 @@ import SignIn from '../SignIn'
 import SignUp from '../SignUp'
 import Navbar from '../../Components/Navbar'
 import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
+import { ShoppingCartContext, ShoppingCartProvider } from '../../Context'
+import { ResponsiveNavbarLeft } from '../../Components/ResponsiveNavbarLeft'
+import { ResponsiveNavbarRight } from '../../Components/ResponsiveNavbarRight'
 import './App.css'
 
 const AppRoutes = () => {
@@ -33,14 +36,26 @@ const AppRoutes = () => {
 }
 
 const App = () => {
+
   return (
     <ShoppingCartProvider>
       <BrowserRouter>
-        <AppRoutes />
-        <Navbar />
-        <CheckoutSideMenu />
+        <AppRoutes/>
+        <Navbar/>
+        <Modals/>
+        <CheckoutSideMenu/>
       </BrowserRouter>
     </ShoppingCartProvider>
+  )
+}
+
+const Modals = () => {
+  const context = useContext(ShoppingCartContext)
+  return (
+  <>
+    { context.openResponsiveNavbarLeft && <ResponsiveNavbarLeft /> }
+    { context.openResponsiveNavbarRight && <ResponsiveNavbarRight /> }
+  </>
   )
 }
 

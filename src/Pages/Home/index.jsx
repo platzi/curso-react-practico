@@ -9,7 +9,9 @@ function Home() {
   const context = useContext(ShoppingCartContext)
 
   const renderView = () => {
-    if (context.filteredItems?.length === 0) {
+    if (context.filteredItems?.length === 0 ||
+      context.openResponsiveNavbarLeft === true ||
+      context.openResponsiveNavbarRight === true) {
       return (
         <div> We don't have anything :( </div>
 
@@ -33,9 +35,11 @@ function Home() {
         placeholder='Search a product'
         className='rounded-lg border border-black w-80 p-4 mb-4 focus:outline-none'
         onChange={(event) => context.setSearchByTitle(event.target.value)} />
+
       <div className='home w-full max-w-screen-lg'>
         {renderView()}
       </div>
+      
       <ProductDetail />
     </Layout>
   )

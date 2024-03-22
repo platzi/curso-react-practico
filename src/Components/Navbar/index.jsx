@@ -10,35 +10,29 @@ const Navbar = () => {
   const context = useContext(ShoppingCartContext)
   const location = useLocation()
 
-  const logoutTrueAndloggedInFalse = () => {
-    const updatedUsers = context.users.map(user => {
-      return { ...user, loggedIn: false }
-    })
-    localStorage.setItem('USERS_V1', JSON.stringify(updatedUsers))
-    localStorage.setItem('LOGGED_USER', JSON.stringify({}))
-    context.closeCheckoutSideMenu()
-    context.setLogout(true)
-  }
-
   return (
     <nav className='navbar flex justify-between items-center fixed z-10 bg-white shadow-lg shadow-gray-800/50 top-0 w-full py-5 px-6 text-sm font-light'>
 
       <ul className='flex items-center gap-3'>
+        <li className='bars3Icon w-7 h-7 cursor-pointer'>
+          <Bars3Icon
+            onClick={() => {
+              context.toggleResponsiveNavbarLeft()
+              context.closeResponsiveNavbarRight()
+              }}/>
+        </li>
         <li className='navbarLeft font-semibold text-lg'>
           <NavLink to='/'>
             Shopi
           </NavLink>
         </li>
-        <li className='bars3Icon w-7 h-7'>
-          <Bars3Icon />
-        </li>
         <li>
           <NavLink
             to='/'
             onClick={() => context.setSearchByCategory()}
-            className={`${({ isActive }) =>
-              isActive ? context.activeStyle : undefined
-            }, navbarLeft`}>
+            className={({ isActive }) => 
+              isActive ? `${context.activeStyle} navbarLeft` : `navbarLeft`
+            }>
             All
           </NavLink>
         </li>
@@ -46,9 +40,9 @@ const Navbar = () => {
           <NavLink
             to='/clothes'
             onClick={() => context.setSearchByCategory('clothes')}
-            className={`${({ isActive }) =>
-              isActive ? context.activeStyle : undefined
-            }, navbarLeft`}>
+            className={({ isActive }) => 
+              isActive ? `${context.activeStyle} navbarLeft` : `navbarLeft`
+            }>
             Clothes
           </NavLink>
         </li>
@@ -56,9 +50,9 @@ const Navbar = () => {
           <NavLink
             to='/electronics'
             onClick={() => context.setSearchByCategory('electronics')}
-            className={`${({ isActive }) =>
-              isActive ? context.activeStyle : undefined
-            }, navbarLeft`}>
+            className={({ isActive }) => 
+              isActive ? `${context.activeStyle} navbarLeft` : `navbarLeft`
+            }>
             Electronics
           </NavLink>
         </li>
@@ -66,9 +60,9 @@ const Navbar = () => {
           <NavLink
             to='/furnitures'
             onClick={() => context.setSearchByCategory('furnitures')}
-            className={`${({ isActive }) =>
-              isActive ? context.activeStyle : undefined
-            }, navbarLeft`}>
+            className={({ isActive }) => 
+              isActive ? `${context.activeStyle} navbarLeft` : `navbarLeft`
+            }>
             Furnitures
           </NavLink>
         </li>
@@ -76,9 +70,9 @@ const Navbar = () => {
           <NavLink
             to='/toys'
             onClick={() => context.setSearchByCategory('toys')}
-            className={`${({ isActive }) =>
-              isActive ? context.activeStyle : undefined
-            }, navbarLeft`}>
+            className={({ isActive }) => 
+              isActive ? `${context.activeStyle} navbarLeft` : `navbarLeft`
+            }>
             Toys
           </NavLink>
         </li>
@@ -86,9 +80,9 @@ const Navbar = () => {
           <NavLink
             to='/others'
             onClick={() => context.setSearchByCategory('others')}
-            className={`${({ isActive }) =>
-              isActive ? context.activeStyle : undefined
-            }, navbarLeft`}>
+            className={({ isActive }) => 
+              isActive ? `${context.activeStyle} navbarLeft` : `navbarLeft`
+            }>
             Others
           </NavLink>
         </li>
@@ -140,7 +134,11 @@ const Navbar = () => {
             <Link to='/sign-in'>
             <button
             className='navbarRight'
-            onClick={() => logoutTrueAndloggedInFalse()}
+            onClick={() => {
+              context.logoutTrueAndloggedInFalse()
+              context.setEmail('')
+              context.setPassword('')
+            }}
             >Log Out</button>
             </Link>
           ) : (
@@ -170,7 +168,11 @@ const Navbar = () => {
 
         {
           (context.logout === false) ? (
-            <UserCircleIcon className='userCricleIcon w-7 h-7' />
+            <UserCircleIcon
+            onClick={() => {
+              context.toggleResponsiveNavbarRight()
+              context.closeResponsiveNavbarLeft()}}
+            className='userCricleIcon w-7 h-7 cursor-pointer' />
           ) : (
             null
           )

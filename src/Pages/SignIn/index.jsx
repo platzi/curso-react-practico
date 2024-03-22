@@ -13,9 +13,11 @@ function SignIn() {
         user.loggedIn = true
         localStorage.setItem('LOGGED_USER', JSON.stringify(user))
         setLogout(false)
+        window.location.href = '/'
         return
       }
-    } alert('Usuario no encontrado')
+    } 
+    alert('Usuario no encontrado')
   }
 
   return (
@@ -46,14 +48,14 @@ function SignIn() {
               <Link className={`font-normal ${activeStyle}`} to='/sign-up'>Sign Up here</Link>
             </span>
           </p>
-          <Link to='/' className='w-full'>
+          <Link className='w-full'>
             <button
             type='button'
             className='mb-5 font-semibold text-lg text-white bg-black rounded-lg w-full h-14 p-2'
             onClick={handleAuthentication}
             >Log In
             </button>
-            </Link>
+          </Link>
         </form>
 
       </div>
