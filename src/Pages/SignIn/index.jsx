@@ -43,10 +43,9 @@ function SignIn() {
             placeholder='Password'
             className='rounded-md border border-black p-2 w-full'
             />
-            <span className='flex justify-center mt-2 text-sm font-light gap-1'>
-              Do not you have an account?&nbsp;
-              <Link className={`font-normal ${activeStyle}`} to='/sign-up'>Sign Up here</Link>
-            </span>
+          <span className='flex justify-center mt-2 text-sm font-light underline cursor-pointer'>
+            Forgot my password
+          </span>
           </p>
           <Link className='w-full'>
             <button
@@ -55,6 +54,10 @@ function SignIn() {
             onClick={handleAuthentication}
             >Log In
             </button>
+            <span className='flex justify-center mt-2 text-sm font-light gap-1'>
+              Do not you have an account?&nbsp;
+              <Link className={`font-normal ${activeStyle}`} to='/sign-up'>Sign Up here</Link>
+            </span>
           </Link>
         </form>
 
