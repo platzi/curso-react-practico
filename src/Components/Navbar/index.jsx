@@ -159,7 +159,9 @@ const Navbar = () => {
           <li
           className='flex items-center cursor-pointer'
           onClick={context.toggleCheckoutSideMenu}>
-            <ShoppingBagIcon className='h-6 w-6 text-black'></ShoppingBagIcon>
+            <ShoppingBagIcon
+            onClick={() => context.closeProductDetail()}
+            className='h-6 w-6 text-black'></ShoppingBagIcon>
             <div>{context.cartProducts.length}</div>
           </li>
         ) : (

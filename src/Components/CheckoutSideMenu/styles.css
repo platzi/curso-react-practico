@@ -3,3 +3,11 @@
   height: calc(100vh - 68px);
   top: 68px;
 }
+
+@media (max-width: 430px) {
+  .responsiveCheckoutSideMenu {
+    overflow: hidden;
+    width: 100%;
+    height: screen;
+  }
+}
