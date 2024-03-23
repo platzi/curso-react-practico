@@ -13,7 +13,6 @@ function SignIn() {
         user.loggedIn = true
         localStorage.setItem('LOGGED_USER', JSON.stringify(user))
         setLogout(false)
-        window.location.href = '/'
         return
       }
     } 
@@ -24,7 +23,7 @@ function SignIn() {
     <Layout>
       <div className='absolute top-0 flex items-center justify-center w-full h-screen'>
 
-        <form className='flex flex-col justify-around items-center p-3 gap-3 w-96 h-2/5'>
+        <form className='relative flex flex-col justify-around items-center p-3 gap-3 w-96 h-2/5'>
           <h1 className='font-semibold text-lg'>Welcome</h1>
           <p className='w-full'>
             <input
@@ -43,22 +42,25 @@ function SignIn() {
             placeholder='Password'
             className='rounded-md border border-black p-2 w-full'
             />
-          <span className='flex justify-center mt-2 text-sm font-light underline cursor-pointer'>
+          <a href='' className='flex justify-center mt-2 text-sm font-light underline cursor-pointer'>
             Forgot my password
-          </span>
+          </a>
           </p>
-          <Link className='w-full'>
+          <Link to='/'
+          className='w-full'>
             <button
             type='button'
-            className='mb-5 font-semibold text-lg text-white bg-black rounded-lg w-full h-14 p-2'
+            className='font-semibold text-lg mb-3 text-white bg-black rounded-lg w-full h-14 p-2'
             onClick={handleAuthentication}
             >Log In
             </button>
-            <span className='flex justify-center mt-2 text-sm font-light gap-1'>
-              Do not you have an account?&nbsp;
-              <Link className={`font-normal ${activeStyle}`} to='/sign-up'>Sign Up here</Link>
-            </span>
           </Link>
+          <p className='flex items-center absolute bottom-0'>
+          <span className='flex justify-center text-sm font-light gap-1'>
+              Do not you have an account?&nbsp;
+          </span>
+          <Link className={`font-normal ${activeStyle}`} to='/sign-up'>Sign Up here</Link>
+          </p>
         </form>
 
       </div>
