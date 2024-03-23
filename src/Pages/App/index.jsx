@@ -1,4 +1,4 @@
-import { useRoutes, BrowserRouter } from 'react-router-dom'
+import { useRoutes, BrowserRouter, Navigate } from 'react-router-dom'
 import { useContext } from 'react'
 import Home from '../Home'
 import MyAccount from '../MyAccount'
@@ -15,21 +15,24 @@ import { ResponsiveNavbarRight } from '../../Components/ResponsiveNavbarRight'
 import './App.css'
 
 const AppRoutes = () => {
+
+  const context = useContext(ShoppingCartContext)
+
   let routes = useRoutes([
-    { path: '/', element: <Home /> },
-    { path: '/clothes', element: <Home /> },
-    { path: '/electronics', element: <Home /> },
-    { path: '/furnitures', element: <Home /> },
-    { path: '/toys', element: <Home /> },
-    { path: '/others', element: <Home /> },
-    { path: '/my-account', element: <MyAccount /> },
-    { path: '/my-order', element: <MyOrder /> },
-    { path: '/my-orders', element: <MyOrders /> },
-    { path: '/my-orders/last', element: <MyOrder /> },
-    { path: '/my-orders/:id', element: <MyOrder /> },
-    { path: '/sign-in', element: <SignIn /> },
-    { path: '/sign-up', element: <SignUp /> },
-    { path: '/*', element: <NotFound /> },
+    { path: '/', element: context.logout === false ? <Home/> : <Navigate replace to={'/sign-in'}/> },
+    { path: '/clothes', element: context.logout === false ? <Home/> : <Navigate replace to={'/sign-in'}/> },
+    { path: '/electronics', element: context.logout === false ? <Home/> : <Navigate replace to={'/sign-in'}/> },
+    { path: '/furnitures', element: context.logout === false ? <Home/> : <Navigate replace to={'/sign-in'}/> },
+    { path: '/toys', element: context.logout === false ? <Home/> : <Navigate replace to={'/sign-in'}/> },
+    { path: '/others', element: context.logout === false ? <Home/> : <Navigate replace to={'/sign-in'}/> },
+    { path: '/my-account', element: context.logout === false ? <MyAccount/> : <Navigate replace to={'/sign-in'}/> },
+    { path: '/my-order', element: context.logout === false ? <MyOrder/> : <Navigate replace to={'/sign-in'}/> },
+    { path: '/my-orders', element: context.logout === false ? <MyOrders/> : <Navigate replace to={'/sign-in'}/> },
+    { path: '/my-orders/last', element: context.logout === false ? <MyOrder/> : <Navigate replace to={'/sign-in'}/> },
+    { path: '/my-orders/:id', element: context.logout === false ? <MyOrder/> : <Navigate replace to={'/sign-in'}/> },
+    { path: '/sign-in', element: <SignIn/>},
+    { path: '/sign-up', element: <SignUp/>},
+    { path: '/*', element: context.logout === false ? <NotFound/> : <Navigate replace to={'/sign-in'}/> }
   ])
 
   return routes
