@@ -39,7 +39,7 @@ function SignIn() {
             type='password'
             name='password'
             onChange={(event) => setPassword(event.target.value)}
-            placeholder='Password'
+            placeholder='******'
             className='rounded-md border border-black p-2 w-full'
             />
           <a href='' className='flex justify-center mt-2 text-sm font-light underline cursor-pointer'>

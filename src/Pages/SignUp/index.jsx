@@ -52,7 +52,7 @@ function SignUp() {
                 <input
                 type='password'
                 name='password'
-                placeholder='Password'
+                placeholder='******'
                 className='rounded-md border border-black p-2 w-full'
                 onChange={getUserData}/>
                 <span className='flex justify-center mt-2 text-sm font-light gap-1'>

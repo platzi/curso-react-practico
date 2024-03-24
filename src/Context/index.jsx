@@ -72,14 +72,20 @@ export const ShoppingCartProvider = ({children}) => {
   const loggedUser = JSON.parse(localStorage.getItem('LOGGED_USER'))
 
   const logoutTrueAndloggedInFalse = () => {
-    const updatedUsers = users.map(user => {
-      return { ...user, loggedIn: false }
-    })
-    localStorage.setItem('USERS_V1', JSON.stringify(updatedUsers))
+    let users = JSON.parse(localStorage.getItem('USERS_V1'))
+    if (users) {
+        users = users.map(user => {
+            if (user.id === loggedUser.id) {
+                return { ...user, loggedIn: false }
+            }
+            return user
+        })
+        localStorage.setItem('USERS_V1', JSON.stringify(users))
+    }
     localStorage.setItem('LOGGED_USER', JSON.stringify({}))
-    closeCheckoutSideMenu()
-    setLogout(true)
-  }
+    closeCheckoutSideMenu();
+    setLogout(true);
+}
 
 
 
