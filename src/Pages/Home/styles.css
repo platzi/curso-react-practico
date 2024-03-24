@@ -11,7 +11,7 @@
     justify-items: center;
 }
 
-@media (max-width: 433px) {
+@media (max-width: 650px) {
     .home {
         display: grid;
         grid-template-columns: repeat(

@@ -4,11 +4,10 @@
   top: 68px;
 }
 
-@media (max-width: 430px) {
+@media (max-width: 650px) {
   .responsiveCheckoutSideMenu {
     border-radius: 0!important;
     overflow: hidden;
     width: 100%;
-    height: screen;
   }
 }
