@@ -13,7 +13,7 @@ function Home() {
       context.openResponsiveNavbarLeft === true ||
       context.openResponsiveNavbarRight === true) {
       return (
-        <div> We don't have anything :( </div>
+        <div>There are no products available</div>
 
       )
     } else {
@@ -33,7 +33,7 @@ function Home() {
       <input
         type="text"
         placeholder='Search a product'
-        className='rounded-lg border border-black w-80 p-4 mb-4 focus:outline-none'
+        className=' widthInput rounded-lg border border-black w-80 p-4 mb-9 focus:outline-none'
         onChange={(event) => context.setSearchByTitle(event.target.value)} />
 
       <div className='home w-full max-w-screen-lg'>

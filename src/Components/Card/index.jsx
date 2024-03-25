@@ -1,7 +1,6 @@
 import { useContext } from 'react'
 import { PlusIcon, CheckIcon } from '@heroicons/react/24/solid'
 import { ShoppingCartContext } from '../../Context'
-import './styles.css'
 
 const Card = (data) => {
   const context = useContext(ShoppingCartContext)
@@ -42,7 +41,7 @@ const Card = (data) => {
 
   return (
     <div
-      className='card bg-white cursor-pointer w-56 h-60 rounded-lg justify-center p-2'
+      className='bg-white cursor-pointer w-3/4 h-4/5 rounded-lg justify-center'
       onClick={() => showProduct(data.data)}>
       <figure
       onClick={() => context.closeCheckoutSideMenu()}

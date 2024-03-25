@@ -10,16 +10,18 @@ function MyOrders() {
   return (
     <Layout>
       <div className='flex items-center justify-center relative w-80 mb-4 mt-4'>
-        <h1 className='font-medium text-xl'>My Orders</h1>
+        <h1 className='font-medium text-xl mb-3'>My Orders</h1>
       </div>
       {
-        context.order.map((order, index) => (
+        context.order.length > 0
+        ? context.order.map((order, index) => (
           <Link key={index} to={`/my-orders/${index}`}>
             <OrdersCard
               totalPrice={order.totalPrice}
               totalProducts={order.totalProducts} />
           </Link>
         ))
+        : <span className='text-md'>You do not have any purchase order</span>
       }
     </Layout>
   )

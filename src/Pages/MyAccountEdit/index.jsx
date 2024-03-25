@@ -31,7 +31,7 @@ const MyAccountEdit = () => {
 
     return(
     <Layout>
-        <form className='flex flex-col justify-between w-1/3 mt-4 gap-6'>
+        <form className='flex flex-col justify-between w-96 mt-4 gap-6'>
             <h1 className='flex justify-center text-lg font-semibold'>Edit Account</h1>
             <p className='flex flex-col gap-2'>
             <span>New Username&nbsp;:</span>
