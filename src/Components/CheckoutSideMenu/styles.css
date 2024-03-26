@@ -3,3 +3,18 @@
   height: calc(100vh - 68px);
   top: 68px;
 }
+
+@media (max-width: 650px) {
+  .responsiveCheckoutSideMenu {
+    border-radius: 0!important;
+    overflow: hidden;
+    width: 100%;
+    border-bottom: 0;
+  }
+}
+
+@media (max-height: 700px) {
+  .responsiveCheckoutSideMenu {
+    height: calc(100vh - 130px);
+  }
+}

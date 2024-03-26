@@ -1,0 +1,31 @@
+.home {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(
+            200px,
+            1fr
+        )
+    );
+    gap: 16px;
+    justify-items: center;
+}
+
+@media (max-width: 650px) {
+    .home {
+        display: grid;
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(
+                150px,
+                1fr
+            )
+        );
+    }
+}
+
+@media (max-width: 345px) {
+    .widthInput {
+        width: 100% !important;
+    }
+}

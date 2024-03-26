@@ -1,17 +1,29 @@
 import { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
-import { ShoppingBagIcon } from '@heroicons/react/24/solid'
+import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Bars3Icon, UserCircleIcon, ShoppingBagIcon } from '@heroicons/react/24/solid'
 import { ShoppingCartContext } from '../../Context'
+import './styles.css'
 
 const Navbar = () => {
   const context = useContext(ShoppingCartContext)
-  const activeStyle = 'underline underline-offset-4'
+  const location = useLocation()
 
   return (
-    <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light'>
+    <nav className='navbar flex justify-between items-center fixed z-10 bg-white shadow-lg shadow-gray-800/50 top-0 w-full py-5 px-6 text-sm font-light'>
+
       <ul className='flex items-center gap-3'>
-        <li className='font-semibold text-lg'>
-          <NavLink to='/'>
+        <li className='bars3Icon w-7 h-7 cursor-pointer'>
+          <Bars3Icon
+            className={context.logout ? 'disabled' : ''}
+            onClick={() => {
+              context.toggleResponsiveNavbarLeft()
+              context.closeResponsiveNavbarRight()
+              }}/>
+        </li>
+        <li className='navbarLeft font-semibold text-lg'>
+          <NavLink 
+          onClick={context.closeCheckoutSideMenu}
+          to='/'>
             Shopi
           </NavLink>
         </li>
@@ -19,8 +31,8 @@ const Navbar = () => {
           <NavLink
             to='/'
             onClick={() => context.setSearchByCategory()}
-            className={({ isActive }) =>
-              isActive ? activeStyle : undefined
+            className={({ isActive }) => 
+              isActive ? `${context.activeStyle} navbarLeft` : `navbarLeft`
             }>
             All
           </NavLink>
@@ -29,8 +41,8 @@ const Navbar = () => {
           <NavLink
             to='/clothes'
             onClick={() => context.setSearchByCategory('clothes')}
-            className={({ isActive }) =>
-              isActive ? activeStyle : undefined
+            className={({ isActive }) => 
+              isActive ? `${context.activeStyle} navbarLeft` : `navbarLeft`
             }>
             Clothes
           </NavLink>
@@ -39,8 +51,8 @@ const Navbar = () => {
           <NavLink
             to='/electronics'
             onClick={() => context.setSearchByCategory('electronics')}
-            className={({ isActive }) =>
-              isActive ? activeStyle : undefined
+            className={({ isActive }) => 
+              isActive ? `${context.activeStyle} navbarLeft` : `navbarLeft`
             }>
             Electronics
           </NavLink>
@@ -49,8 +61,8 @@ const Navbar = () => {
           <NavLink
             to='/furnitures'
             onClick={() => context.setSearchByCategory('furnitures')}
-            className={({ isActive }) =>
-              isActive ? activeStyle : undefined
+            className={({ isActive }) => 
+              isActive ? `${context.activeStyle} navbarLeft` : `navbarLeft`
             }>
             Furnitures
           </NavLink>
@@ -59,8 +71,8 @@ const Navbar = () => {
           <NavLink
             to='/toys'
             onClick={() => context.setSearchByCategory('toys')}
-            className={({ isActive }) =>
-              isActive ? activeStyle : undefined
+            className={({ isActive }) => 
+              isActive ? `${context.activeStyle} navbarLeft` : `navbarLeft`
             }>
             Toys
           </NavLink>
@@ -69,49 +81,110 @@ const Navbar = () => {
           <NavLink
             to='/others'
             onClick={() => context.setSearchByCategory('others')}
-            className={({ isActive }) =>
-              isActive ? activeStyle : undefined
+            className={({ isActive }) => 
+              isActive ? `${context.activeStyle} navbarLeft` : `navbarLeft`
             }>
             Others
           </NavLink>
         </li>
       </ul>
+
       <ul className='flex items-center gap-3'>
-        <li className='text-black/60'>
-          teff@platzi.com
-        </li>
+
+        {
+          context.logout === false
+          ?
+          (() => {
+            
+            return (
+              <li className='text-black/60 navbarRight'>
+                {context.loggedUser.email}
+              </li>
+            )
+          })()
+          :
+          null
+        }
+
         <li>
+        {(context.logout === false) ? (
           <NavLink
-            to='/my-orders'
-            className={({ isActive }) =>
-              isActive ? activeStyle : undefined
-            }>
-            My Orders
-          </NavLink>
+          onClick={context.closeCheckoutSideMenu}
+          to='/my-orders'
+          className={`${({ isActive }) =>
+            isActive ? context.activeStyle : undefined
+        } navbarRight`}>
+          My Orders
+        </NavLink>
+        ) : (undefined)}
         </li>
+        
         <li>
+        {(context.logout === false) ? (
           <NavLink
-            to='/my-account'
-            className={({ isActive }) =>
-              isActive ? activeStyle : undefined
-            }>
-            My Account
-          </NavLink>
+          onClick={context.closeCheckoutSideMenu}
+          to='/my-account'
+          className={`${({ isActive }) =>
+          isActive ? context.activeStyle : undefined
+      } navbarRight`}>
+          My Account
+        </NavLink>
+        ) : (undefined)}
         </li>
-        <li>
-          <NavLink
-            to='/sing-in'
-            className={({ isActive }) =>
-              isActive ? activeStyle : undefined
-            }>
-            Sign In
-          </NavLink>
-        </li>
-        <li className='flex items-center'>
-          <ShoppingBagIcon className='h-6 w-6 text-black'></ShoppingBagIcon>
-          <div>{context.cartProducts.length}</div>
-        </li>
+        
+        {
+          (context.logout === false) ? (
+            <Link to='/sign-in'>
+            <button
+            className='navbarRight'
+            onClick={() => {
+              context.logoutTrueAndloggedInFalse()
+              context.setEmail('')
+              context.setPassword('')
+            }}
+            >Log Out</button>
+            </Link>
+          ) : (
+            <li>
+            <NavLink
+              to='/sign-in'
+              onClick={context.closeCheckoutSideMenu}
+              className={({ isActive }) =>
+              isActive ? context.activeStyle : undefined
+              }>
+              Sign In
+            </NavLink>
+          </li>
+          )
+        }
+
+        {location.pathname !== '/sign-in' && location.pathname !== '/sign-up' ? (
+          <li
+          className='flex items-center cursor-pointer'
+          onClick={context.toggleCheckoutSideMenu}>
+            <ShoppingBagIcon
+            onClick={() => context.closeProductDetail()}
+            className='h-6 w-6 text-black'></ShoppingBagIcon>
+            <div>{context.cartProducts.length}</div>
+          </li>
+        ) : (
+          null
+        )}
+
+        {
+          (context.logout === false) ? (
+            <UserCircleIcon
+            onClick={() => {
+              context.toggleResponsiveNavbarRight()
+              context.closeResponsiveNavbarLeft()}}
+            className='userCricleIcon w-7 h-7 cursor-pointer' />
+          ) : (
+            null
+          )
+        }
+
       </ul>
+
     </nav>
   )
 }

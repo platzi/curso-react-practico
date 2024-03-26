@@ -3,6 +3,18 @@ import { createContext, useState, useEffect } from 'react'
 export const ShoppingCartContext = createContext()
 
 export const ShoppingCartProvider = ({children}) => {
+
+  // NavBar underline color categories
+  const activeStyle = 'underline underline-offset-4'
+
+  // Modals whit React Portals
+  const [openResponsiveNavbarLeft, setOpenResponsiveNavbarLeft] = useState(false)
+  const toggleResponsiveNavbarLeft = () => setOpenResponsiveNavbarLeft(!openResponsiveNavbarLeft)
+  const closeResponsiveNavbarLeft = () => setOpenResponsiveNavbarLeft(false)
+  const [openResponsiveNavbarRight, setOpenResponsiveNavbarRight] = useState(false)
+  const toggleResponsiveNavbarRight = () => setOpenResponsiveNavbarRight(!openResponsiveNavbarRight)
+  const closeResponsiveNavbarRight = () => setOpenResponsiveNavbarRight(false)
+
   // Shopping Cart · Increment quantity
   const [count, setCount] = useState(0)
 
@@ -15,6 +27,7 @@ export const ShoppingCartProvider = ({children}) => {
   const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false)
   const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
   const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
+  const toggleCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(!isCheckoutSideMenuOpen)
 
   // Product Detail · Show product
   const [productToShow, setProductToShow] = useState({})
@@ -34,6 +47,47 @@ export const ShoppingCartProvider = ({children}) => {
 
   // Get products by category
   const [searchByCategory, setSearchByCategory] = useState(null)
+
+  // All about Local Storage
+  const [userData, setUserData] = useState({})
+  const [users, setUsers] = useState(JSON.parse(localStorage.getItem("USERS_V1")) || [])
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const [logout, setLogout] = useState(() => {
+    const storedLogout = localStorage.getItem("LOGOUT");
+    return storedLogout ? JSON.parse(storedLogout) : true;
+  })
+  
+  useEffect(() => {
+    localStorage.setItem("LOGOUT", JSON.stringify(logout));
+  }, [logout])
+
+  const saveUsers = (newArray) => {
+    localStorage.setItem("USERS_V1", JSON.stringify(newArray));
+    setUsers(newArray);
+}
+
+  const loggedUser = JSON.parse(localStorage.getItem('LOGGED_USER'))
+
+  const logoutTrueAndloggedInFalse = () => {
+    let users = JSON.parse(localStorage.getItem('USERS_V1'))
+    if (users) {
+        users = users.map(user => {
+            if (user.id === loggedUser.id) {
+                return { ...user, loggedIn: false }
+            }
+            return user
+        })
+        localStorage.setItem('USERS_V1', JSON.stringify(users))
+    }
+    localStorage.setItem('LOGGED_USER', JSON.stringify({}))
+    closeCheckoutSideMenu();
+    setLogout(true);
+}
+
+
 
   useEffect(() => {
     fetch('https://api.escuelajs.co/api/v1/products')
@@ -76,6 +130,7 @@ export const ShoppingCartProvider = ({children}) => {
 
   return (
     <ShoppingCartContext.Provider value={{
+      activeStyle,
       count,
       setCount,
       openProductDetail,
@@ -88,6 +143,7 @@ export const ShoppingCartProvider = ({children}) => {
       isCheckoutSideMenuOpen,
       openCheckoutSideMenu,
       closeCheckoutSideMenu,
+      toggleCheckoutSideMenu,
       order,
       setOrder,
       items,
@@ -96,7 +152,25 @@ export const ShoppingCartProvider = ({children}) => {
       setSearchByTitle,
       filteredItems,
       searchByCategory,
-      setSearchByCategory
+      setSearchByCategory,
+      userData,
+      setUserData,
+      users,
+      saveUsers,
+      email,
+      setEmail,
+      password,
+      setPassword,
+      logout,
+      setLogout,
+      loggedUser,
+      openResponsiveNavbarLeft,
+      toggleResponsiveNavbarLeft,
+      closeResponsiveNavbarLeft,
+      openResponsiveNavbarRight,
+      toggleResponsiveNavbarRight,
+      closeResponsiveNavbarRight,
+      logoutTrueAndloggedInFalse,
     }}>
       {children}
     </ShoppingCartContext.Provider>
