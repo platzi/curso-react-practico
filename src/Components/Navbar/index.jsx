@@ -1,8 +1,6 @@
 import { useContext } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { ShoppingBagIcon } from '@heroicons/react/24/solid'
-import { Bars3Icon } from '@heroicons/react/24/solid'
-import { UserCircleIcon } from '@heroicons/react/24/solid'
+import { Bars3Icon, UserCircleIcon, ShoppingBagIcon } from '@heroicons/react/24/solid'
 import { ShoppingCartContext } from '../../Context'
 import './styles.css'
 
@@ -16,13 +14,16 @@ const Navbar = () => {
       <ul className='flex items-center gap-3'>
         <li className='bars3Icon w-7 h-7 cursor-pointer'>
           <Bars3Icon
+            className={context.logout ? 'disabled' : ''}
             onClick={() => {
               context.toggleResponsiveNavbarLeft()
               context.closeResponsiveNavbarRight()
               }}/>
         </li>
         <li className='navbarLeft font-semibold text-lg'>
-          <NavLink to='/'>
+          <NavLink 
+          onClick={context.closeCheckoutSideMenu}
+          to='/'>
             Shopi
           </NavLink>
         </li>
@@ -108,6 +109,7 @@ const Navbar = () => {
         <li>
         {(context.logout === false) ? (
           <NavLink
+          onClick={context.closeCheckoutSideMenu}
           to='/my-orders'
           className={`${({ isActive }) =>
             isActive ? context.activeStyle : undefined
@@ -120,6 +122,7 @@ const Navbar = () => {
         <li>
         {(context.logout === false) ? (
           <NavLink
+          onClick={context.closeCheckoutSideMenu}
           to='/my-account'
           className={`${({ isActive }) =>
           isActive ? context.activeStyle : undefined

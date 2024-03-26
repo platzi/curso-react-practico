@@ -23,7 +23,7 @@ function SignIn() {
     <Layout>
       <div className='absolute top-0 flex items-center justify-center w-full h-screen'>
 
-        <form className='relative flex flex-col justify-around items-center p-3 gap-3 w-96 h-2/5'>
+        <form className='relative flex flex-col justify-around items-center p-2 gap-3 w-96 h-2/5'>
           <h1 className='font-semibold text-lg'>Welcome</h1>
           <p className='w-full'>
             <input
@@ -50,7 +50,7 @@ function SignIn() {
           className='w-full'>
             <button
             type='button'
-            className='font-semibold text-lg mb-3 text-white bg-black rounded-lg w-full h-14 p-2'
+            className='font-semibold text-lg mb-14 text-white bg-black rounded-lg w-full h-14 p-2'
             onClick={handleAuthentication}
             >Log In
             </button>

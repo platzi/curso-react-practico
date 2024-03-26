@@ -17,6 +17,7 @@ const ResponsiveNavbarLeft = () => {
                 onClick={() => {
                     context.setSearchByCategory()
                     context.closeResponsiveNavbarLeft()
+                    context.closeCheckoutSideMenu()
                     }
                 }
             to='/'>
@@ -29,6 +30,7 @@ const ResponsiveNavbarLeft = () => {
                 onClick={() => {
                     context.setSearchByCategory()
                     context.closeResponsiveNavbarLeft()
+                    context.closeCheckoutSideMenu()
                     }
                 }
                 className={({ isActive }) =>
@@ -43,6 +45,7 @@ const ResponsiveNavbarLeft = () => {
                 onClick={() => {
                     context.setSearchByCategory('clothes')
                     context.closeResponsiveNavbarLeft()
+                    context.closeCheckoutSideMenu()
                     }
                 }
                 className={({ isActive }) =>
@@ -57,6 +60,7 @@ const ResponsiveNavbarLeft = () => {
                 onClick={() => {
                     context.setSearchByCategory('electronics')
                     context.closeResponsiveNavbarLeft()
+                    context.closeCheckoutSideMenu()
                     }
                 }
                 className={({ isActive }) =>
@@ -71,6 +75,7 @@ const ResponsiveNavbarLeft = () => {
                 onClick={() => {
                     context.setSearchByCategory('furnitures')
                     context.closeResponsiveNavbarLeft()
+                    context.closeCheckoutSideMenu()
                     }
                 }
                 className={({ isActive }) =>
@@ -85,6 +90,7 @@ const ResponsiveNavbarLeft = () => {
                 onClick={() => {
                     context.setSearchByCategory('toys')
                     context.closeResponsiveNavbarLeft()
+                    context.closeCheckoutSideMenu()
                     }
                 }
                 className={({ isActive }) =>
@@ -99,6 +105,7 @@ const ResponsiveNavbarLeft = () => {
                 onClick={() => {
                     context.setSearchByCategory('others')
                     context.closeResponsiveNavbarLeft()
+                    context.closeCheckoutSideMenu()
                     }
                 }
                 className={({ isActive }) =>

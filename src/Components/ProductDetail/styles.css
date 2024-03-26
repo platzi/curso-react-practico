@@ -9,5 +9,12 @@
     border-radius: 0!important;
     overflow: hidden;
     width: 100%;
+    border-bottom: 0;
+  }
+}
+
+@media (max-height: 700px) {
+  .responsiveProductDetail {
+    height: 83vh;
   }
 }

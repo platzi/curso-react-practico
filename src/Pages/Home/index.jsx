@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { useMediaQuery } from '@uidotdev/usehooks'
 import Layout from '../../Components/Layout'
 import Card from '../../Components/Card'
 import ProductDetail from '../../Components/ProductDetail'
@@ -7,6 +8,7 @@ import './styles.css'
 
 function Home() {
   const context = useContext(ShoppingCartContext)
+  const isResponsive = useMediaQuery('(max-width:650px)')
 
   const renderView = () => {
     if (context.filteredItems?.length === 0 ||
@@ -18,7 +20,9 @@ function Home() {
       )
     } else {
       return (
-        context.filteredItems?.map(item => (
+        (isResponsive && (context.isProductDetailOpen || context.isCheckoutSideMenuOpen))
+        ? null
+        : context.filteredItems?.map(item => (
           <Card key={item.id} data={item} />
         ))
       )

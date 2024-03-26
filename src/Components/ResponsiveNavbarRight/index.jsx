@@ -16,7 +16,10 @@ const ResponsiveNavbarRight = () => {
             <li>
             <NavLink
                 to='/my-orders'
-                onClick={() => context.closeResponsiveNavbarRight()}
+                onClick={() => {
+                    context.closeResponsiveNavbarRight()
+                    context.closeCheckoutSideMenu()
+                }}
                 className={({ isActive }) =>
                 isActive ? context.activeStyle : undefined}>
                 My Orders
@@ -26,7 +29,10 @@ const ResponsiveNavbarRight = () => {
             <li>
             <NavLink
                 to='/my-account'
-                onClick={() => context.closeResponsiveNavbarRight()}
+                onClick={() => {
+                    context.closeResponsiveNavbarRight()
+                    context.closeCheckoutSideMenu()
+                }}
                 className={({ isActive }) =>
                 isActive ? context.activeStyle : undefined}>
                 My Account

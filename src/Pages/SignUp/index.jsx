@@ -27,7 +27,7 @@ function SignUp() {
     return (
         <Layout>
         <div className='absolute top-0 flex items-center justify-center w-full h-screen'>
-            <form className='flex flex-col justify-around items-center p-3 gap-3 w-96 h-2/5'>
+            <form className='flex flex-col justify-around items-center p-2 gap-3 w-96 h-2/5'>
             <h1 className='font-semibold text-lg'>Create Account</h1>
             <p className='w-full'>
                 <span>Your username:</span>
